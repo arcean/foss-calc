@@ -398,8 +398,9 @@ QString MainPage::parseString(double value)
             precision = 1;
         text = QString::number(value, 'g', precision);
         qDebug() << "New text" << text;
+        return text;
     }
-    return text;
+    return tempText;
 }
 
 void MainPage::setDisplayText(QString text)
@@ -612,7 +613,8 @@ void MainPage::unaryOperatorClicked()
         }
         result = 1.0 / operand;
     }
-    setDisplayText(QString::number(result, 'g', 12));
+    //setDisplayText(QString::number(result, 'g', 12));
+    setDisplayText(parseString(result));
     waitingForOperand = true;
     clickedButton->setSelected(true);
 }
@@ -629,7 +631,8 @@ void MainPage::additiveOperatorClicked()
             abortOperation();
             return;
         }
-        setDisplayText(QString::number(factorSoFar, 'g', 12));
+        //setDisplayText(QString::number(factorSoFar, 'g', 12));
+        setDisplayText(parseString(factorSoFar));
         operand = factorSoFar;
         factorSoFar = 0.0;
         pendingMultiplicativeOperator.clear();
@@ -640,7 +643,8 @@ void MainPage::additiveOperatorClicked()
             abortOperation();
             return;
         }
-        setDisplayText(QString::number(sumSoFar, 'g', 12));
+        //setDisplayText(QString::number(sumSoFar, 'g', 12));
+        setDisplayText(parseString(sumSoFar));
     } else {
         sumSoFar = operand;
     }
@@ -804,7 +808,8 @@ void MainPage::getPi()
     double pi = 3.14159265358;
 
     // Display value
-    setDisplayText(QString::number(pi, 'g', 12));
+    //setDisplayText(QString::number(pi, 'g', 12));
+    setDisplayText(parseString(pi));
     waitingForOperand = true;
 }
 
@@ -818,7 +823,8 @@ void MainPage::getRandom()
     value = value / 1000000;
 
     // Display value
-    setDisplayText(QString::number(value, 'g', 12));
+    //setDisplayText(QString::number(value, 'g', 12));
+    setDisplayText(parseString(value));
     waitingForOperand = true;
 }
 
@@ -833,7 +839,8 @@ void MainPage::computeFactorial()
         throwError("Value has to be equal or higer than 0");
     }
     else if (display == 0) {
-        setDisplayText(QString::number(value));
+        //setDisplayText(QString::number(value));
+        setDisplayText(parseString(value));
         waitingForOperand = true;
     }
     else {
@@ -841,7 +848,8 @@ void MainPage::computeFactorial()
         for (int i = 0; i < display; i++)
             value = value + value * i;
         waitingForOperand = true;
-        setDisplayText(QString::number(value, 'g', 11));
+        //setDisplayText(QString::number(value, 'g', 11));
+        setDisplayText(parseString(value));
     }
 }
 
@@ -852,7 +860,8 @@ void MainPage::clearMemory()
 
 void MainPage::readMemory()
 {
-    setDisplayText(QString::number(sumInMemory, 'g', 12));
+    //setDisplayText(QString::number(sumInMemory, 'g', 12));
+    setDisplayText(parseString(sumInMemory));
     waitingForOperand = true;
 }
 
