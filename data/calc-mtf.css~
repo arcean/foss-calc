@@ -256,7 +256,7 @@ margin-right:  $INDENT_DEFAULT;
     padding-bottom: 2px;
 }
 
-@const DISPLAY_LABEL_WIDTH_LANDSCAPE: 757;
+@const DISPLAY_LABEL_WIDTH_LANDSCAPE: 737;
 
 #calc_mtf_displayLabel1.Landscape {
     font: $FONT_FAMILY 80px;

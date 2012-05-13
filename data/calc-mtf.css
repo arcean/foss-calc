@@ -679,8 +679,23 @@ margin-right:  $INDENT_DEFAULT;
     text-color: $COLOR_INVERTED_BACKGROUND;
 }
 
+#calc_mtf_buttonEqual.Portrait {
+    background-image: "meegoui-calculator-button-up" $CONTENT_MARGINS;
+    text-color: $COLOR_ACCENT18;
+    font: $FONT_FAMILY 72px;
+    horizontal-text-align: hcenter;
+    vertical-text-align: vcenter;
+    minimum-size: 110 110;
+    maximum-size: 110 110;
+    preferred-size: 110 110;
+    margin-left: 10;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    transition: "imploding-background";
+}
 
-#calc_mtf_buttonEqual {
+#calc_mtf_buttonEqual.Landscape {
     background-image: "meegoui-calculator-button-up" $CONTENT_MARGINS;
     text-color: $COLOR_ACCENT18;
     font: $FONT_FAMILY 72px;
@@ -701,7 +716,23 @@ margin-right:  $INDENT_DEFAULT;
     text-color: $COLOR_INVERTED_BACKGROUND;
 }
 
-#calc_mtf_buttonDot {
+#calc_mtf_buttonDot.Portrait {
+    background-image: "meegoui-calculator-button-up" $CONTENT_MARGINS;
+    text-color: $COLOR_INVERTED_SECONDARY_FOREGROUND;
+    font: $FONT_FAMILY 72px;
+    horizontal-text-align: hcenter;
+    vertical-text-align: vcenter;
+    minimum-size: 110 110;
+    maximum-size: 110 110;
+    preferred-size: 110 110;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    transition: "imploding-background";
+}
+
+#calc_mtf_buttonDot.Landscape {
     background-image: "meegoui-calculator-button-up" $CONTENT_MARGINS;
     text-color: $COLOR_INVERTED_SECONDARY_FOREGROUND;
     font: $FONT_FAMILY 72px;

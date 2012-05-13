@@ -67,16 +67,16 @@ void MainPage::createContent()
     /* Clear button */
     connect(opButtons[0], SIGNAL(clicked()), this, SLOT(clearAll()));
     /* Div button */
-    connect(opButtons[1], SIGNAL(clicked()), this, SLOT(setSelectedButton()));
+    connect(opButtons[1], SIGNAL(clicked()), this, SLOT(setSelectedButton0()));
     connect(opButtons[1], SIGNAL(clicked()), this, SLOT(multiplicativeOperatorClicked()));
     /* Mutli button */
-    connect(opButtons[2], SIGNAL(clicked()), this, SLOT(setSelectedButton()));
+    connect(opButtons[2], SIGNAL(clicked()), this, SLOT(setSelectedButton0()));
     connect(opButtons[2], SIGNAL(clicked()), this, SLOT(multiplicativeOperatorClicked()));
     /* Add button */
-    connect(opButtons[5], SIGNAL(clicked()), this, SLOT(setSelectedButton()));
+    connect(opButtons[5], SIGNAL(clicked()), this, SLOT(setSelectedButton0()));
     connect(opButtons[5], SIGNAL(clicked()), this, SLOT(additiveOperatorClicked()));
     /* Sub button */
-    connect(opButtons[4], SIGNAL(clicked()), this, SLOT(setSelectedButton()));
+    connect(opButtons[4], SIGNAL(clicked()), this, SLOT(setSelectedButton0()));
     connect(opButtons[4], SIGNAL(clicked()), this, SLOT(additiveOperatorClicked()));
     /* Sign button */
     connect(opButtons[3], SIGNAL(clicked()), this, SLOT(changeSignClicked()));
@@ -321,6 +321,16 @@ void MainPage::createContent()
     connect(this->applicationWindow(), SIGNAL(orientationChanged(M::Orientation)), this, SLOT(orientationChanged()));
 }
 
+void MainPage::keyPressEvent(QKeyEvent *event)
+{
+    qDebug()  << "KBD";
+    switch (event->key()) {
+    case Qt::Key_0:
+        //numButton0->click();
+        break;
+    }
+}
+
 void MainPage::orientationChanged()
 {
     setDisplayText(getDisplayText());
@@ -367,6 +377,31 @@ void MainPage::setSelectedButton0()
     }
 }
 
+QString MainPage::parseString(double value)
+{
+    QString text;
+    QString tempText = QString::number(value, 'g', 12);
+    int length = tempText.length();
+    qDebug() << "length:" << length;
+
+    if (tempText.contains("e")) {
+        // Count (e+xx) as one sign.
+        tempText.indexOf("e");
+        qDebug() << "normal length" << tempText.length();
+        qDebug() << "e pos" << tempText.indexOf("e");
+        qDebug() << "length e" << tempText.length() - 1;
+        qDebug() << "delta e" << tempText.length() - tempText.indexOf("e");
+        qDebug() << "tempValue" << tempText;
+        // precision = 12 - e+xx
+        int precision = 12 - (tempText.length() - tempText.indexOf("e"));
+        if (precision < 1)
+            precision = 1;
+        text = QString::number(value, 'g', precision);
+        qDebug() << "New text" << text;
+    }
+    return text;
+}
+
 void MainPage::setDisplayText(QString text)
 {
     if (text.isNull() || text.isEmpty())
@@ -411,8 +446,11 @@ void MainPage::setDisplayText(QString text)
             qDebug() << "bound width:" << bound.width();
             qDebug() << "is bound.width > 270:" << (bound.width() > boundValue);
 
-            if (bound.width() > boundValue)
+            if (bound.width() > boundValue) {
+                if (displayStyleNumber + 1 > 7)
+                    break;
                 setDisplayStyle(displayStyleNumber + 1);
+            }
             else
                 fontSizeReady = true;
             qDebug() << "font size" << "displayStyleNumber + 1";
@@ -626,7 +664,9 @@ void MainPage::multiplicativeOperatorClicked()
             return;
         }
 
-        setDisplayText(QString::number(sumSoFar, 'g', 12));
+        //setDisplayText(QString::number(sumSoFar, 'g', 12));
+        setDisplayText(parseString(sumSoFar));
+
         operand = sumSoFar;
         sumSoFar = 0.0;
         pendingAdditiveOperator.clear();
@@ -637,7 +677,8 @@ void MainPage::multiplicativeOperatorClicked()
             abortOperation();
             return;
         }
-        setDisplayText(QString::number(factorSoFar, 'g', 12));
+        //setDisplayText(QString::number(factorSoFar, 'g', 12));
+        setDisplayText(parseString(factorSoFar));
     } else {
         factorSoFar = operand;
     }
@@ -671,7 +712,8 @@ void MainPage::equalClicked()
         sumSoFar = operand;
     }
 
-    setDisplayText(QString::number(sumSoFar, 'g', 12));
+    //setDisplayText(QString::number(sumSoFar, 'g', 12));
+    setDisplayText(parseString(sumSoFar));
     sumSoFar = 0.0;
     waitingForOperand = true;
     setSelectedButton0();
@@ -873,17 +915,20 @@ void MainPage::throwError(const QString &text)
 
 void MainPage::showAboutDialog()
 {
-    MDialog *dialog = new MDialog();
+    MDialog *dialog = new MDialog("", M::CloseButton);
 
-    //dialog->setObjectName("modalDialog");
+    const QChar CopyrightSymbol(0x00a9);
 
-    MLabel *textSystemModal= new MLabel(qtTrId("Open source calculator for MeeGo 1.2 Harmattan"));
+    QString text(qtTrId("Open source calculator for MeeGo 1.2 Harmattan.\n"));
+    QString copyright_string(QString(CopyrightSymbol) + QString::fromUtf8(" 2012 Tomasz Pieniążek"));
+
+    MLabel *textSystemModal= new MLabel(text + copyright_string);
     textSystemModal->setStyleName("CommonBodyTextInverted");
     textSystemModal->setAlignment(Qt::AlignCenter);
     textSystemModal->setWordWrap(true);
     textSystemModal->setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
 
-    MLabel *title= new MLabel(qtTrId("Calc-OS 0.1"));
+    MLabel *title= new MLabel(qtTrId("FOSS-calc 0.1"));
     title->setStyleName("title_label");
     title->setAlignment(Qt::AlignCenter);
     title->setWordWrap(true);
@@ -899,20 +944,17 @@ void MainPage::showAboutDialog()
     layoutTitle->addItem(title);
     layoutTitle->addStretch();
 
+    //MImageWidget *image = new MImageWidget(new QPixmap("/usr/share/icons/hicolor/80x80/apps/videozoom.png"));
     MImageWidget *image = new MImageWidget("icon-l-calculator");
 
     QGraphicsLinearLayout *layout1 = new QGraphicsLinearLayout(Qt::Vertical);
     layout1->addItem(image);
     layout1->addItem(layoutTitle);
     layout1->addItem(layoutDesc);
+    layout1->addStretch();
 
     dialog->centralWidget()->setLayout(layout1);
-    dialog->setTitleBarVisible(false);
-    dialog->setCloseButtonVisible(false);
-    dialog->setButtonBoxVisible(false);
-    //dialog->setStyleName("FullsizeDialogNoTitle");
     dialog->setObjectName("about_dialog");
-    //dialog->setTitleBarIconId("icon-l-calculator");
-    //dialog->setSystem(true);
+
     dialog->appear(MSceneWindow::DestroyWhenDone);
 }

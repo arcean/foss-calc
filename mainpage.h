@@ -34,6 +34,8 @@ public:
 
 protected:
     virtual void createContent();
+    // Keyboard support
+    virtual void keyPressEvent(QKeyEvent *event);
 
 public slots:
 
@@ -68,15 +70,19 @@ private slots:
 
 private:
     bool calculate(double rightOperand, const QString &pendingOperator);
+
     QString insertEmptyFields(QString text);
     void setDisplayText(QString text);
     QString getDisplayText();
     void setDisplayStyle(int number);
+    QString parseString(double value);
+
     void throwError(const QString &text);
 
     MLabel *display;
     /* Op buttons */
     MButton *opButtons[7];
+
     /* Info banner */
     MBanner *infoBanner;
 

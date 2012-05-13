@@ -14,7 +14,7 @@ int main(int argc, char *argv[]){
     MApplication application(argc, argv);
     application.setOrganizationName("arcean");
     application.setOrganizationDomain("arcean.com");
-    application.setApplicationName("SketchIt");
+    application.setApplicationName("foss-calc");
 
     MApplicationWindow window;
     MainPage page;
