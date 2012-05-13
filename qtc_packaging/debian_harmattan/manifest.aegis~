@@ -1,0 +1,13 @@
+<aegis>
+   <request>
+     <credential name="UID::root" />
+     <credential name="GID::root" />
+     <for path="/opt/homescreenbg/bin/cpimg" />
+     <for path="/opt/homescreenbg/bin/rebootphone" />
+   </request>
+   <request>
+     <credential name="TrackerReadAccess" />
+     <credential name="TrackerWriteAccess" />
+     <for path="/opt/homescreenbg/bin/homescreenbg" />
+   </request>
+</aegis>
