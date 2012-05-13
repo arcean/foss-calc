@@ -7,21 +7,23 @@
 #include <MWidgetAction>
 #include <MTextEdit>
 #include <QObject>
+#include <MExport>
+#include <MComponentCache>
 
 #include "mainpage.h"
 
-int main(int argc, char *argv[]){
-    MApplication application(argc, argv);
-    application.setOrganizationName("arcean");
-    application.setOrganizationDomain("arcean.com");
-    application.setApplicationName("foss-calc");
+M_EXPORT int main(int argc, char *argv[]){
+    MApplication* application = MComponentCache::mApplication(argc, argv);
+    application->setOrganizationName("arcean");
+    application->setOrganizationDomain("arcean.com");
+    application->setApplicationName("foss-calc");
 
-    MApplicationWindow window;
+    MApplicationWindow* window = MComponentCache::mApplicationWindow();
     MainPage page;
 
-    page.appear(&window);
+    page.appear(window);
 
-    window.showFullScreen();
+    window->showFullScreen();
 
-    return application.exec();
+    return application->exec();
  }

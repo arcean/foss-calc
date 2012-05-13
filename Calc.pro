@@ -20,6 +20,7 @@ HEADERS  += \
 FORMS    +=
 
 CONFIG += meegotouch
+CONFIG += meegotouch-boostable
 
 symbian {
     TARGET.UID3 = 0xe8f85d27
