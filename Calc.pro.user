@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.1, 2012-05-14T14:01:09. -->
+<!-- Written by Qt Creator 2.4.1, 2012-05-14T17:57:41. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -186,7 +186,7 @@
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
        <value type="QDateTime">2012-04-18T20:54:36</value>
-       <value type="QDateTime">2012-05-14T13:59:08</value>
+       <value type="QDateTime">2012-05-14T17:55:41</value>
       </valuelist>
      </valuemap>
      <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">3</value>
@@ -267,7 +267,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Calc (na zdalnym urządzeniu)</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.MaemoRunConfiguration</value>
-    <value type="QString" key="Qt4ProjectManager.MaemoRunConfiguration.Arguments"></value>
+    <value type="QString" key="Qt4ProjectManager.MaemoRunConfiguration.Arguments">-output-level debug</value>
     <value type="int" key="Qt4ProjectManager.MaemoRunConfiguration.BaseEnvironmentBase">1</value>
     <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.ExportedLocalDirs"/>
     <value type="QString" key="Qt4ProjectManager.MaemoRunConfiguration.ProFile">Calc.pro</value>

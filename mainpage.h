@@ -55,7 +55,6 @@ private slots:
     void setMemory();
     void addToMemory();
     void subFromMemory();
-    void abortOperation();
     void getPi();
     void getRandom();
     void computeFactorial();
@@ -78,6 +77,9 @@ private:
     QString parseString(double value);
 
     void throwError(const QString &text);
+
+    void valueTooHigh();
+    void abortOperation();
 
     MLabel *display;
     /* Op buttons */

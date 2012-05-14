@@ -399,14 +399,26 @@ QString MainPage::parseString(double value)
         text = QString::number(value, 'g', precision);
         qDebug() << "New text" << text;
         return text;
+    } else {
+        int delta = length - 12;
+        qDebug() << "delta" << delta;
+        if (delta > 0)
+            tempText = QString::number(value, 'g', 12 - delta + 1);
+
+        return tempText;
     }
-    return tempText;
 }
 
 void MainPage::setDisplayText(QString text)
 {
     if (text.isNull() || text.isEmpty())
         return;
+
+    if (text.compare("inf", Qt::CaseInsensitive) == 0) {
+        qDebug() << "Too high value";
+        valueTooHigh();
+        return;
+    }
 
     QLocale locales;
     int length;
@@ -598,6 +610,8 @@ void MainPage::unaryOperatorClicked()
     double operand = getDisplayText().toDouble();
     double result = 0.0;
 
+    setSelectedButton0();
+
     if (clickedOperator == QChar(0x221A)) {
         if (operand < 0.0) {
             abortOperation();
@@ -788,6 +802,7 @@ void MainPage::clear()
     display->setText("0");
     waitingForOperand = true;
     waitWithCalculating = true;
+    setSelectedButton0();
 }
 
 void MainPage::clearAll()
@@ -811,6 +826,7 @@ void MainPage::getPi()
     //setDisplayText(QString::number(pi, 'g', 12));
     setDisplayText(parseString(pi));
     waitingForOperand = true;
+    setSelectedButton0();
 }
 
 void MainPage::getRandom()
@@ -826,6 +842,7 @@ void MainPage::getRandom()
     //setDisplayText(QString::number(value, 'g', 12));
     setDisplayText(parseString(value));
     waitingForOperand = true;
+    setSelectedButton0();
 }
 
 void MainPage::computeFactorial()
@@ -851,11 +868,13 @@ void MainPage::computeFactorial()
         //setDisplayText(QString::number(value, 'g', 11));
         setDisplayText(parseString(value));
     }
+    setSelectedButton0();
 }
 
 void MainPage::clearMemory()
 {
     sumInMemory = 0.0;
+    setSelectedButton0();
 }
 
 void MainPage::readMemory()
@@ -863,6 +882,7 @@ void MainPage::readMemory()
     //setDisplayText(QString::number(sumInMemory, 'g', 12));
     setDisplayText(parseString(sumInMemory));
     waitingForOperand = true;
+    setSelectedButton0();
 }
 
 void MainPage::setMemory()
@@ -870,6 +890,7 @@ void MainPage::setMemory()
     equalClicked();
     sumInMemory = getDisplayText().toDouble();
     qDebug() << "Set" << sumInMemory;
+    setSelectedButton0();
 }
 
 void MainPage::addToMemory()
@@ -877,6 +898,7 @@ void MainPage::addToMemory()
     equalClicked();
     sumInMemory += getDisplayText().toDouble();
     qDebug() << "Add" << sumInMemory;
+    setSelectedButton0();
 }
 
 void MainPage::subFromMemory()
@@ -884,12 +906,25 @@ void MainPage::subFromMemory()
     equalClicked();
     sumInMemory -= getDisplayText().toDouble();
     qDebug() << "Remove" << sumInMemory;
+    setSelectedButton0();
 }
 
 void MainPage::abortOperation()
 {
     clearAll();
     throwError("Can not calculate");
+}
+
+void MainPage::valueTooHigh()
+{
+    setSelectedButton0();
+    sumSoFar = 0.0;
+    factorSoFar = 0.0;
+    pendingAdditiveOperator.clear();
+    pendingMultiplicativeOperator.clear();
+    waitingForOperand = true;
+    waitWithCalculating = true;
+    throwError("Too high value");
 }
 
 bool MainPage::calculate(double rightOperand, const QString &pendingOperator)
