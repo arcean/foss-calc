@@ -1,6 +1,6 @@
 #title_label {
 font:          $FONT_FAMILY bold 32;
-color:         $COLOR_INVERTED_FOREGROUND;
+color:         $COLOR_ACCENT18;
 margin-top:    $MARGIN_LARGE;
 margin-bottom: $MARGIN_LARGE;
 margin-left:   $INDENT_DEFAULT;
@@ -409,6 +409,9 @@ margin-right:  $INDENT_DEFAULT;
     preferred-size: 60 60;
     margin-top: 33;
     margin-left: 13;
+    press-feedback   : priority2_callbutton_press;
+    release-feedback : priority2_callbutton_release;
+    cancel-feedback  :;
 }
 
 #calc_mtf_backspace.Landscape {
@@ -418,6 +421,9 @@ margin-right:  $INDENT_DEFAULT;
     preferred-size: 60 60;
     margin-top: 12;
     margin-left: 13;
+    press-feedback   : priority2_callbutton_press;
+    release-feedback : priority2_callbutton_release;
+    cancel-feedback  :;
 }
 
 #calc_mtf_backspace:pressed {
@@ -495,6 +501,7 @@ margin-right:  $INDENT_DEFAULT;
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+    release-feedback : priority2_callbutton_release;
 /*    transition: "expanding-background"; */
 }
 
@@ -511,6 +518,7 @@ margin-right:  $INDENT_DEFAULT;
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+    press-feedback   : priority2_callbutton_press;
 /*    transition: "expanding-background"; */
 }
 
@@ -538,6 +546,7 @@ margin-right:  $INDENT_DEFAULT;
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+    release-feedback : priority2_callbutton_release;
 /*    transition: "expanding-background"; */
 }
 
@@ -555,6 +564,7 @@ margin-right:  $INDENT_DEFAULT;
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+    press-feedback   : priority2_callbutton_press;
 /*    transition: "expanding-background"; */
 }
 
@@ -583,6 +593,9 @@ margin-right:  $INDENT_DEFAULT;
     margin-top: 0;
     margin-bottom: 0;
     transition: "imploding-background";
+    press-feedback   : priority2_callbutton_press;
+    release-feedback : priority2_callbutton_release;
+    cancel-feedback  :;
 }
 
 #calc_mtf_buttonSign:pressed {
@@ -610,6 +623,9 @@ margin-right:  $INDENT_DEFAULT;
     margin-top: 0;
     margin-bottom: 0;
     transition: "imploding-background";
+    press-feedback   : priority2_callbutton_press;
+    release-feedback : priority2_callbutton_release;
+    cancel-feedback  :;
 }
 
 #calc_mtf_buttonClear:pressed {
@@ -638,6 +654,9 @@ margin-right:  $INDENT_DEFAULT;
     margin-top: 0;
     margin-bottom: 0;
     transition: "imploding-background";
+    press-feedback   : priority2_callbutton_press;
+    release-feedback : priority2_callbutton_release;
+    cancel-feedback  :;
 }
 
 #calc_mtf_buttonMem:pressed {
@@ -666,6 +685,9 @@ margin-right:  $INDENT_DEFAULT;
     margin-top: 0;
     margin-bottom: 0;
     transition: "imploding-background";
+    press-feedback   : priority2_callbutton_press;
+    release-feedback : priority2_callbutton_release;
+    cancel-feedback  :;
 }
 
 #calc_mtf_buttonRand:pressed {
@@ -693,6 +715,9 @@ margin-right:  $INDENT_DEFAULT;
     margin-top: 0;
     margin-bottom: 0;
     transition: "imploding-background";
+    press-feedback   : priority2_callbutton_press;
+    release-feedback : priority2_callbutton_release;
+    cancel-feedback  :;
 }
 
 #calc_mtf_buttonEqual.Landscape {
@@ -709,6 +734,9 @@ margin-right:  $INDENT_DEFAULT;
     margin-top: 0;
     margin-bottom: 0;
     transition: "imploding-background";
+    press-feedback   : priority2_callbutton_press;
+    release-feedback : priority2_callbutton_release;
+    cancel-feedback  :;
 }
 
 #calc_mtf_buttonEqual:pressed {
@@ -730,6 +758,9 @@ margin-right:  $INDENT_DEFAULT;
     margin-top: 0;
     margin-bottom: 0;
     transition: "imploding-background";
+    press-feedback   : priority2_callbutton_press;
+    release-feedback : priority2_callbutton_release;
+    cancel-feedback  :;
 }
 
 #calc_mtf_buttonDot.Landscape {
@@ -746,6 +777,9 @@ margin-right:  $INDENT_DEFAULT;
     margin-top: 0;
     margin-bottom: 0;
     transition: "imploding-background";
+    press-feedback   : priority2_callbutton_press;
+    release-feedback : priority2_callbutton_release;
+    cancel-feedback  :;
 }
 
 #calc_mtf_buttonDot:pressed {

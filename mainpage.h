@@ -8,6 +8,7 @@
 #include <MWidgetAction>
 #include <MLabel>
 #include <MBanner>
+#include <MInputMethodState>
 
 /* To enable debug msgs: */
 /* -output-level debug */
@@ -32,10 +33,10 @@ class MainPage : public MApplicationPage {
 public:
     MainPage(QGraphicsItem *parent = 0);
 
+    virtual void keyPressEvent(QKeyEvent *event);
+
 protected:
     virtual void createContent();
-    // Keyboard support
-    virtual void keyPressEvent(QKeyEvent *event);
 
 public slots:
 

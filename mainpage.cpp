@@ -318,6 +318,7 @@ void MainPage::createContent()
     /* Set calc variables. */
     sumInMemory = 0;
 
+    /* Update display's font settings. */
     connect(this->applicationWindow(), SIGNAL(orientationChanged(M::Orientation)), this, SLOT(orientationChanged()));
 }
 

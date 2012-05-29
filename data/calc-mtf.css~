@@ -1,6 +1,6 @@
 #title_label {
 font:          $FONT_FAMILY bold 32;
-color:         $COLOR_INVERTED_FOREGROUND;
+color:         $COLOR_ACCENT18;
 margin-top:    $MARGIN_LARGE;
 margin-bottom: $MARGIN_LARGE;
 margin-left:   $INDENT_DEFAULT;
@@ -688,7 +688,7 @@ margin-right:  $INDENT_DEFAULT;
     minimum-size: 110 110;
     maximum-size: 110 110;
     preferred-size: 110 110;
-    margin-left: 10;
+    margin-left: 0;
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
